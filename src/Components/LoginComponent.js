@@ -1,4 +1,5 @@
 import React from 'react';
+import history from './../history';
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import { makeStyles } from '@material-ui/core/styles';
@@ -21,7 +22,13 @@ const LoginComponent = () =>{
                 <form>
                     <TextField id="outlined-basic" label="employee ID" variant="outlined" autoFocus/>
                 </form>
-                <Button className={classes.loginButton} variant="contained" color="primary" fullWidth> login </Button>
+                <Button
+                 className={classes.loginButton} 
+                 variant="contained" 
+                 color="primary" 
+                 fullWidth
+                 onClick={()=>history.push('/dashboard')}
+                 > login </Button>
             </Paper>
             {/* <img className={classes.devImg} src={Developer}/> */}
         </Grid>
