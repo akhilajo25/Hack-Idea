@@ -11,7 +11,7 @@ const LandingPage = () =>{
     const classes = useStyles();
     return(
         <div className="classes.root" >
-            <img style={{width: '15%'}} src={Logo}/>
+            {/* <img style={{width: '15%'}} src={Logo}/> */}
             <Grid 
             container
             className={classes.holder}
