@@ -95,7 +95,8 @@ class IdeaListAV(APIView):
             serializer.save()
             return Response(serializer.data)
         else:
-            return Response(serializer.errors)
+            # return Response(serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class IdeaDetailAV(APIView):
