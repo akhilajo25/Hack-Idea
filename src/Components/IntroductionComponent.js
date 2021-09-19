@@ -14,7 +14,7 @@ const IntroductionComponent = () =>{
 const useStyles = makeStyles((theme) => ({
     bannerImg:{
         width:'100%',
-        height:'auto',
+        height:'100vh',
     }
 }))
 

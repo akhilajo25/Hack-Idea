@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import Logo from "../assets/images/download.png";
+// import Logo from "../assets/images/ideation.svg";
 import LoginComponent from './LoginComponent';
 import IntroductionComponent from './IntroductionComponent';
 
@@ -11,7 +11,7 @@ const LandingPage = () =>{
     const classes = useStyles();
     return(
         <div className="classes.root" >
-            {/* <img style={{width: '15%'}} src={Logo}/> */}
+            {/* <img style={{width: '5%'}} src={Logo}/> */}
             <Grid 
             container
             className={classes.holder}

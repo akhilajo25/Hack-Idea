@@ -1,4 +1,5 @@
-import React from 'react';
+import React , {useState} from 'react';
+import axios from 'axios';
 import history from './../history';
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
@@ -9,9 +10,26 @@ import Avatar from '@material-ui/core/Avatar';
 import { Height } from '@material-ui/icons';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 // import Developer from '../assets/images/developer.svg';
-
+// ()=>history.push('/dashboard')
 const LoginComponent = () =>{
     const classes = useStyles();
+    const [employee, setEmployee] = useState("");
+    // const [user, setUser] = useState()
+    const handleSumbit=()=>{
+        const newEmployee = { employee_id: employee};
+        console.log(employee)
+        axios.post('http://127.0.0.1:8000/idea/employees/', newEmployee)
+            .then(response => {
+            console.log(response)
+            history.push('/dashboard')
+            localStorage.setItem('user', response.data.employee_id)
+            console.log(localStorage.getItem('user'))
+        })
+            .catch(error => {
+                console.log(error.response)
+             });    
+            
+        }
     return(
         <Grid container className={classes.loginGrid} direction="column">
             <Paper elevation={10} className={classes.paperContainer} >
@@ -20,14 +38,21 @@ const LoginComponent = () =>{
                 <h3>Log In</h3>
                 </Grid>
                 <form>
-                    <TextField id="outlined-basic" label="employee ID" variant="outlined" autoFocus/>
+                    <TextField 
+                    id="outlined-basic" 
+                    label="employee ID"
+                    variant="outlined" 
+                    autoFocus
+                    value={employee}
+                    onChange={e => setEmployee(e.target.value)}
+                    />
                 </form>
                 <Button
                  className={classes.loginButton} 
                  variant="contained" 
                  color="primary" 
                  fullWidth
-                 onClick={()=>history.push('/dashboard')}
+                 onClick={handleSumbit}
                  > login </Button>
             </Paper>
             {/* <img className={classes.devImg} src={Developer}/> */}
@@ -38,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
    paperContainer:{
        padding:'20px',
        margin:'20px auto',
-       height:'30vh' 
+       height:'fit-content' 
    },
    loginGrid:{
        justifyContent:'center',

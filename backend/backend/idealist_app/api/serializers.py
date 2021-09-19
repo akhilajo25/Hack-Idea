@@ -1,6 +1,19 @@
 from rest_framework import serializers
 # Map each value step by step from model
-from idealist_app.models import Idea, Tag
+from idealist_app.models import Idea, Tag, Employee,  Idea_vote
+
+
+class EmployeeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Employee
+        fields = '__all__'
+
+
+class Idea_voteSerializer(serializers.ModelSerializer):
+    # idea = serializers.StringRelatedField()
+    class Meta:
+        model = Idea_vote
+        fields = '__all__'
 
 
 class IdeaSerializer(serializers.ModelSerializer):
@@ -9,7 +22,11 @@ class IdeaSerializer(serializers.ModelSerializer):
 
         def to_representation(self, tags):
             tags = tags.all()
+            # print(list(tags))
+            print([(tag.tag_name) for tag in tags]
+                  )
             return "".join([(tag.tag_name + " ") for tag in tags]).rstrip(' ')
+            # return([(tag.tag_name) for tag in tags])
 
     tags = TagsField()
 
@@ -41,12 +58,12 @@ class IdeaSerializer(serializers.ModelSerializer):
             return value
 
     # OBJECT LEVEL VALIDATION, takes self and data as args
-    def validate(self, data):
-        if data['title'] == data['description']:
-            raise serializers.ValidationError(
-                "Title can't be same as description")
-        else:
-            return data
+    # def validate(self, data):
+    #     if data['title'] == data['description']:
+    #         raise serializers.ValidationError(
+    #             "Title can't be same as description")
+    #     else:
+    #         return data
 
 
 class TagSerializer(serializers.ModelSerializer):
