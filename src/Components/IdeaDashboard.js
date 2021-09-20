@@ -35,14 +35,14 @@ const IdeaDashboard = () =>{
             <Paper className={classes.paperContainer}>
                 <AddIdea/>
                 <Grid item className={classes.listFilters}>
-                    <Tooltip title="Sort by date" aria-label="add">
+                    <Tooltip title={sortCreatedUp ? "Get oldest" : "Get Latest"} aria-label="add">
                         <IconButton>
                             {sortCreatedUp ? <UpdateIcon onClick={handleSort} style={{ fontSize: 30, fontWeight:'bold'}}/>:
                             <HistoryIcon onClick={handleSort} style={{ fontSize: 30, fontWeight:'bold'}} /> 
                             }
                         </IconButton>
                     </Tooltip>
-                    <Tooltip title="Sort by votes" aria-label="add">
+                    <Tooltip title={sortVotesUp ? "Get Least voted" : "Get Most voted"} aria-label="add">
                         <IconButton>
                             {sortVotesUp ?
                             <ArrowUpwardIcon onClick={handleFilter} style={{ fontSize: 30, fontWeight:'bold'}} /> :
