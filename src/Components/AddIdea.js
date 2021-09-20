@@ -20,7 +20,9 @@ const AddIdea = () => {
     };
     const handleClose = () => {
         setOpen(false);
+        window.location.reload();
     };
+    
     return(
         <Grid container className={classes.root}>
             <Grid className={classes.logoAndName}>

@@ -13,12 +13,27 @@ const AddIdeaForm = (props) =>{
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [tags, setTags] = useState("");
-    const loggedInUser = localStorage.getItem('user')
+    const [titleError, setTitleError] = useState(false);
+    const [descriptionError, setDescriptionError] = useState(false);
+    const [tagsError, setTagsError] = useState(false);
+    const loggedInUser = localStorage.getItem('user');
     const handleSumbit=()=>{
+        setTitleError(false);
+        setDescriptionError(false);
+        setTagsError(false);
+    if (title == ''){
+        setTitleError(true);
+    }
+    if (description == ''){
+        setDescriptionError(true);
+    }
+    if (tags == ''){
+        setTagsError(true);
+    }
     const idea = { title: title, description: description, tags: tags, createdby:loggedInUser};
     axios.post('http://127.0.0.1:8000/idea/list/', idea)
         .then(response => {
-            // console.log(response)
+            console.log(response)
         setTitle('')
         setDescription('')
         setTags('')
@@ -27,9 +42,10 @@ const AddIdeaForm = (props) =>{
         )
         .catch(error => {
             console.log(error.response)
+        
          });    
     }
-
+    console.log(titleError? titleError : ' ')
     return(
         <DialogContent>
             <form className={classes.root} noValidate autoComplete="off" className={classes.root}>
@@ -41,6 +57,8 @@ const AddIdeaForm = (props) =>{
                     className={classes.inputTextField}
                     value={title}
                     onChange={e => setTitle(e.target.value)}
+                    error = {titleError}
+                    helperText = {titleError ? "Title cannot be Empty" : ''}
                     required
                 />
                 <TextField
@@ -51,6 +69,8 @@ const AddIdeaForm = (props) =>{
                 className={classes.inputTextField}
                 value={description}
                 onChange={e => setDescription(e.target.value)}
+                error = {descriptionError}
+                helperText = {descriptionError ? "Description cannot be Empty" : ''}
                 required
                 />
 
@@ -62,6 +82,8 @@ const AddIdeaForm = (props) =>{
                 className={classes.inputTextField}
                 value={tags}
                 onChange={e => setTags(e.target.value)}
+                error = {tagsError}
+                helperText = {tagsError ? "Tags cannot be Empty" : ''}
                 required
                 />
                 <DialogActions>
@@ -82,7 +104,9 @@ const useStyles = makeStyles((theme) => ({
         marginTop:'15px'
     },
     submitButton:{
-        margin:'5px'
+        margin:'5px',
+        paddingLeft:'45px',
+        color:'orange'
     }
 }))
 export default AddIdeaForm;

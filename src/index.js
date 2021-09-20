@@ -9,8 +9,8 @@ const App = () =>{
     return(
         <Router>
             <div className="container">
-        <Routes/>
-        </div>
+                <Routes/>
+            </div>
         </Router>
     )
 }

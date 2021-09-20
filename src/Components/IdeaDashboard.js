@@ -9,7 +9,7 @@ import IdeaCard from './IdeaCard';
 import { IconButton, Typography , Tooltip, Button} from '@material-ui/core';
 import ThumbsUpDownIcon from '@mui/icons-material/ThumbsUpDown';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-
+import Footer from './Footer'
 const IdeaDashboard = () =>{
     const [hf,setHF] = useState(false);
     const [sortCreatedUp, setsortCreatedUp] = useState(true);
@@ -32,12 +32,12 @@ const IdeaDashboard = () =>{
             <Paper className={classes.paperContainer}>
                 <AddIdea/>
                 <Grid item className={classes.listFilters}>
-                    <Tooltip title="Sort" aria-label="add">
+                    <Tooltip title="Sort by date" aria-label="add">
                         <IconButton>
                             <AccessTimeIcon onClick={handleSort} style={{ fontSize: 30, fontWeight:'bold'}} />
                         </IconButton>
                     </Tooltip>
-                    <Tooltip title="Filter" aria-label="add">
+                    <Tooltip title="Sort by votes" aria-label="add">
                         <IconButton>
                             <ThumbsUpDownIcon onClick={handleFilter} style={{ fontSize: 30, fontWeight:'bold'}} />
                         </IconButton>
@@ -49,20 +49,21 @@ const IdeaDashboard = () =>{
                 hf={hf}
                 sortVotesUp={sortVotesUp} 
                 sortVotesDown={sortVotesDown} 
-                
                 />
             </Paper>
+            <Footer/>
         </Grid>
     )
 }
 const useStyles = makeStyles((theme) => ({
     paperContainer:{
-        backgroundImage: `linear-gradient(rgba(255,255,255,.7), rgba(255,255,255,.7)),url(${BackgroundImage})`,
+        backgroundImage: `linear-gradient(rgba(255,255,255,.7), rgba(255,255,255,.1))`,
         minHeight:'100vh',
         backgroundSize:'100% 100%',
         padding:'20px',
         backgroundColor: 'currentcolor',
         '-webkit-background-size': 'cover'
+        // ,url(${BackgroundImage})
     },
 
     listFilters:{
