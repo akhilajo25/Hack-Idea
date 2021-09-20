@@ -7,8 +7,10 @@ import AddIdea from './AddIdea';
 import Grid from '@material-ui/core/Grid';
 import IdeaCard from './IdeaCard';
 import { IconButton, Typography , Tooltip, Button} from '@material-ui/core';
-import ThumbsUpDownIcon from '@mui/icons-material/ThumbsUpDown';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import HistoryIcon from '@mui/icons-material/History';
+import UpdateIcon from '@mui/icons-material/Update';
 import Footer from './Footer'
 const IdeaDashboard = () =>{
     const [hf,setHF] = useState(false);
@@ -35,12 +37,17 @@ const IdeaDashboard = () =>{
                 <Grid item className={classes.listFilters}>
                     <Tooltip title="Sort by date" aria-label="add">
                         <IconButton>
-                            <AccessTimeIcon onClick={handleSort} style={{ fontSize: 30, fontWeight:'bold'}} />
+                            {sortCreatedUp ? <UpdateIcon onClick={handleSort} style={{ fontSize: 30, fontWeight:'bold'}}/>:
+                            <HistoryIcon onClick={handleSort} style={{ fontSize: 30, fontWeight:'bold'}} /> 
+                            }
                         </IconButton>
                     </Tooltip>
                     <Tooltip title="Sort by votes" aria-label="add">
                         <IconButton>
-                            <ThumbsUpDownIcon onClick={handleFilter} style={{ fontSize: 30, fontWeight:'bold'}} />
+                            {sortVotesUp ?
+                            <ArrowUpwardIcon onClick={handleFilter} style={{ fontSize: 30, fontWeight:'bold'}} /> :
+                            <ArrowDownwardIcon onClick={handleFilter} style={{ fontSize: 30, fontWeight:'bold'}} /> 
+                            }
                         </IconButton>
                     </Tooltip>
                 </Grid>
