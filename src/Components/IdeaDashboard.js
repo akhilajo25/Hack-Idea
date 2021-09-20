@@ -26,6 +26,7 @@ const IdeaDashboard = () =>{
         setsortVotesDown(!sortVotesDown);
         setsortVotesUp(!sortVotesUp);
     }
+   
     const classes = useStyles();
     return (
         <Grid>
