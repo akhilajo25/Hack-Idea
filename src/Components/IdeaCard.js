@@ -149,14 +149,14 @@ const useStyles = makeStyles((theme) => ({
       flexContainer:{
         justifyContent:'space-between',
         alignItems:'flex-end',
-        backgroundColor:'#D8D8D8'
+
       },
       ideaCreator:{
-        fontSize:'10px',
+        fontSize:'12px',
         color:'grey'
       },
       ideaCreated:{
-        fontSize:'9px',
+        fontSize:'10px',
         color:'grey'
       }
 
